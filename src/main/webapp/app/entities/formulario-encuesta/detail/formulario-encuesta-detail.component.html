@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="formularioEncuesta">
+      <h2 data-cy="formularioEncuestaDetailsHeading">
+        <span jhiTranslate="encuestasApp.formularioEncuesta.detail.title">Formulario Encuesta</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ formularioEncuesta.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="encuestasApp.formularioEncuesta.numeroDocumento">Numero Documento</span></dt>
+        <dd>
+          <span>{{ formularioEncuesta.numeroDocumento }}</span>
+        </dd>
+        <dt><span jhiTranslate="encuestasApp.formularioEncuesta.email">Email</span></dt>
+        <dd>
+          <span>{{ formularioEncuesta.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="encuestasApp.formularioEncuesta.comentarios">Comentarios</span></dt>
+        <dd>
+          <span>{{ formularioEncuesta.comentarios }}</span>
+        </dd>
+        <dt><span jhiTranslate="encuestasApp.formularioEncuesta.fechaRespuesta">Fecha Respuesta</span></dt>
+        <dd>
+          <span>{{ formularioEncuesta.fechaRespuesta | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="encuestasApp.formularioEncuesta.marcaFavoritaPC">Marca Favorita PC</span></dt>
+        <dd>
+          <div *ngIf="formularioEncuesta.marcaFavoritaPC">
+            <a [routerLink]="['/computador', formularioEncuesta.marcaFavoritaPC.id, 'view']">{{
+              formularioEncuesta.marcaFavoritaPC.marca
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/formulario-encuesta', formularioEncuesta.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>
